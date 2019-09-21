@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  distance-api-nginx:
+    container_name: distance-api-nginx
+    image: nginx:latest
+    ports:
+      - "8000:80"
+    volumes:
+      - ./:/var/www/app
+      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - distance-api-php
+
+  distance-api-php:
+    container_name: distance-api-php
+    build:
+      context: .
+      dockerfile: docker/php/Dockerfile
+    volumes:
+      - .:/var/www/app
