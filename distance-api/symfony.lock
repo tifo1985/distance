@@ -1,4 +1,25 @@
 {
+    "csa/guzzle-bundle": {
+        "version": "3.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "3.0",
+            "ref": "37c8c8a6c9b4365529a27975dced0589fea4bb48"
+        },
+        "files": [
+            "config/packages/csa_guzzle.yaml"
+        ]
+    },
+    "csa/guzzle-cache-middleware": {
+        "version": "v1.0.0"
+    },
+    "csa/guzzle-history-middleware": {
+        "version": "v1.0.0"
+    },
+    "csa/guzzle-stopwatch-middleware": {
+        "version": "v1.0.0"
+    },
     "doctrine/annotations": {
         "version": "1.0",
         "recipe": {
@@ -16,6 +37,15 @@
     },
     "exsyst/swagger": {
         "version": "v0.4.1"
+    },
+    "guzzlehttp/guzzle": {
+        "version": "6.3.3"
+    },
+    "guzzlehttp/promises": {
+        "version": "v1.3.1"
+    },
+    "guzzlehttp/psr7": {
+        "version": "1.6.1"
     },
     "nelmio/api-doc-bundle": {
         "version": "3.0",
@@ -45,8 +75,14 @@
     "psr/container": {
         "version": "1.0.0"
     },
+    "psr/http-message": {
+        "version": "1.0.1"
+    },
     "psr/log": {
         "version": "1.1.0"
+    },
+    "ralouphie/getallheaders": {
+        "version": "3.0.3"
     },
     "symfony/asset": {
         "version": "v4.3.4"
@@ -225,6 +261,19 @@
             "config/packages/twig.yaml",
             "config/routes/dev/twig.yaml",
             "templates/base.html.twig"
+        ]
+    },
+    "symfony/validator": {
+        "version": "4.3",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "4.3",
+            "ref": "d902da3e4952f18d3bf05aab29512eb61cabd869"
+        },
+        "files": [
+            "config/packages/test/validator.yaml",
+            "config/packages/validator.yaml"
         ]
     },
     "symfony/var-dumper": {

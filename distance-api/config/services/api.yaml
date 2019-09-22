@@ -1,0 +1,20 @@
+services:
+    App\Api\AbstractRequest:
+        abstract:  true
+        autowire: true
+
+    App\Api\IpGeolocationApi:
+        parent: App\Api\AbstractRequest
+        autowire: true
+        bind:
+            $client: '@csa_guzzle.client.ip_geolocation_api'
+            $apiKey: '%env(IP_GEOLOCATION_API_API_KEY)%'
+
+    App\Api\GoogleApi:
+        parent: App\Api\AbstractRequest
+        autowire: true
+        bind:
+            $client: '@csa_guzzle.client.google_api'
+            $apiKey: '%env(GOOGLE_API_API_KEY)%'
+
+
