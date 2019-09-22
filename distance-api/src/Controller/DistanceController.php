@@ -16,7 +16,7 @@ class DistanceController
 {
     /**
      * Distance between ip addresse and postal addresse.
-     * 
+     *
      * @Route("/api/v1", methods={"GET"})
      */
     public function calculate(Request $request, DistanceService $distanceService,DataValidatorService $validator)
