@@ -19,20 +19,18 @@ class DistanceController
      *
      * @Route("/api/v1", methods={"GET"})
      */
-    public function calculate(Request $request, DistanceService $distanceService,DataValidatorService $validator)
+    public function calculate(Request $request, DistanceService $distanceService, DataValidatorService $validator)
     {
         $data = [
-            'postal_address' => [
-                'street' => $request->get('street'),
-                'postcode' => $request->get('postcode'),
-                'city' => $request->get('city'),
-                'country' => $request->get('country')
-            ],
-            'ip_address' => $request->get('ipAddress', '')
+            'street' => $request->get('street'),
+            'postcode' => (int) $request->get('postcode'),
+            'city' => $request->get('city'),
+            'country' => $request->get('country'),
+            'ipAddress' => $request->get('ipAddress', '')
         ];
 
         $errors = $validator->validate($data);
-        if(count($errors) > 0){
+        if (count($errors) > 0) {
             $data = [
                 'code' => 'validation_error',
                 'message' => 'There was a validation error',
@@ -42,7 +40,12 @@ class DistanceController
         }
 
         return new JsonResponse([
-           'distance' =>  $distanceService->calculate($data['ip_address'], $data['postal_address'])
+            'distance' => $distanceService->calculate($data['ipAddress'], [
+                'street' => $data['street'],
+                'postcode' => $data['postcode'],
+                'city' => $data['city'],
+                'country' => $data['country']
+            ])
         ]);
     }
 }

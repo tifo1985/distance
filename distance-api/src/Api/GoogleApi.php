@@ -40,7 +40,6 @@ final class GoogleApi extends AbstractRequest
             ])
         ]);
         $responseContents = $response->getResponseContents();
-        dump($responseContents);
         if($response->isSuccess()
             && $responseContents->status === 'OK'
             && count($responseContents->rows) > 0
