@@ -23,17 +23,17 @@ final class DataValidatorService
      *
      * @return array
      */
-    public function validate(array $data) : array
+    public function validate(array $data): array
     {
         $errors = [];
         $violationList = $this->validator->validate($data, $this->getConstraints());
 
         if (0 < count($violationList)) {
-            foreach ($violationList as $constraintViolation){
-                 $errors[] = [
+            foreach ($violationList as $constraintViolation) {
+                $errors[] = [
                     'message' => $constraintViolation->getMessage(),
                     'property' => $constraintViolation->getPropertyPath()
-                 ];
+                ];
             }
         }
 
@@ -47,25 +47,23 @@ final class DataValidatorService
     {
 
         return new Assert\Collection([
-            'postal_address' => new Assert\Collection([
-                'street' => [
-                    new Assert\NotBlank(),
-                    new Assert\Type(['type' => 'string'])
-                ],
-                'postcode' => [
-                    new Assert\NotBlank(),
-                    new Assert\Type(['type' => 'integer'])
-                ],
-                'city' => [
-                    new Assert\NotBlank(),
-                    new Assert\Type(['type' => 'string'])
-                ],
-                'country' => [
-                    new Assert\NotBlank(),
-                    new Assert\Type(['type' => 'string'])
-                ]
-            ]),
-            'ip_address' => new Assert\Ip()
+            'street' => [
+                new Assert\NotBlank(),
+                new Assert\Type(['type' => 'string'])
+            ],
+            'postcode' => [
+                new Assert\NotBlank(),
+                new Assert\Positive()
+            ],
+            'city' => [
+                new Assert\NotBlank(),
+                new Assert\Type(['type' => 'string'])
+            ],
+            'country' => [
+                new Assert\NotBlank(),
+                new Assert\Type(['type' => 'string'])
+            ],
+            'ipAddress' => new Assert\Ip()
         ]);
     }
 }
