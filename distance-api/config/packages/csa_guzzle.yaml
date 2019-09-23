@@ -1,0 +1,10 @@
+csa_guzzle:
+    profiler: '%kernel.debug%'
+    clients:
+      ip_geolocation_api:
+        config:
+          base_uri: '%env(IP_GEOLOCATION_API_URL)%'
+
+      google_api:
+        config:
+          base_uri: '%env(GOOGLE_API_URL)%'
